@@ -1,0 +1,67 @@
+#!/usr/bin/env python2
+#Returns sequences from a multifasta file
+import re
+import string
+import sys
+import os
+import csv
+import itertools
+
+def main():
+	
+	
+	#Node file
+	node_file = sys.argv[2]
+
+	
+	# Check to make sure a valid node filepath was specified
+	#if not os.path.isfile(node_file):
+    #		sys.exit("Invalid ORF filepath specified!")
+ 
+	#open the node file
+	#nodeFP = open(node_file, 'r')
+	fp = csv.reader(open(sys.argv[1], 'r'))
+	
+	
+	
+	for row in fp:
+		lookup = (row[4])
+		dir = ''
+		if (int(row[6]) < int(row[5])):
+			dir = 'reverse'
+		else:
+			dir = 'forward'
+		print(">%s_len_%s_%s_%s_%s_%s_%s_%s" % ((row[0][4:40]), row[1], row[7], row[8], (row[4][:11]), dir, row[5], row[6]))
+		for num, line in enumerate(open(node_file, 'r'), 1):
+			if lookup in line:
+				headerLn = num
+		contig = ''
+		sequence = ''
+		temp = ''
+		with open(node_file) as f:
+			for i in xrange(headerLn):
+				f.next()
+			for line in f:
+				if not line.startswith(">"):
+					contig = contig + line.strip('\n')
+				else:
+					break
+		if (int(row[6]) > int(row[5])):
+			sequence = contig[int(row[5])-1:int(row[6])-1]
+		else:
+			seq_dict = {'A':'T','T':'A','G':'C','C':'G'}
+			temp = contig[int(row[6])-1:int(row[5])]
+			sequence = "".join([seq_dict[base] for base in reversed(temp)])
+		print sequence
+		print " "
+		
+				
+				
+		
+			
+		
+		
+		
+main()		
+	
+	
