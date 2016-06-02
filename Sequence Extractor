@@ -58,14 +58,6 @@ def main():
 			sequence = "".join([seq_dict[base] for base in reversed(temp)])
 		print sequence
 		print " "
-		
-				
-				
-		
-			
-		
-		
-		
 main()		
 	
 	
