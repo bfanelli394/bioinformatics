@@ -19,13 +19,7 @@ def main():
 	#Node file
 	node_file = sys.argv[2]
 
-	
-	# Check to make sure a valid node filepath was specified
-	#if not os.path.isfile(node_file):
-    #		sys.exit("Invalid ORF filepath specified!")
- 
-	#open the node file
-	#nodeFP = open(node_file, 'r')
+	#Open the csv file with nodes and sequence locations
 	fp = csv.reader(open(sys.argv[1], 'r'))
 	
 	
@@ -33,6 +27,7 @@ def main():
 	for row in fp:
 		lookup = (row[4])
 		dir = ''
+		#Determine the directionality of the sequence
 		if (int(row[6]) < int(row[5])):
 			dir = 'reverse'
 		else:
@@ -47,12 +42,15 @@ def main():
 		with open(node_file) as f:
 			for i in xrange(headerLn):
 				f.next()
+			#create a contig string with no line breaks
 			for line in f:
 				if not line.startswith(">"):
 					contig = contig + line.strip('\n')
 				else:
 					break
-		if (int(row[6]) > int(row[5])):
+		#Extract sequence based on if it's forward or reverse. If reverse,
+		#The reverse compliment is extracted and returned
+		if (dir = 'forward'):
 			sequence = contig[int(row[5])-1:int(row[6])-1]
 		else:
 			seq_dict = {'A':'T','T':'A','G':'C','C':'G'}
