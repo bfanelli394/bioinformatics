@@ -1,5 +1,3 @@
-# GC Content Calculator
-
 #!/usr/bin/env python2
 #GC content calculator for a multifasta file
 import re
