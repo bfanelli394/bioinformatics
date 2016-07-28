@@ -1,7 +1,6 @@
 #!/usr/bin/env python2
 #This script is an edit of a sequence extractor script. It will create
-#a genome file the length of a reference (7750108 is used here for Trichodesmium
-#erythraeum and should be changed depending on the organism) including all sequences
+#a genome file the length of a reference (sys.argv[6]) including all sequences
 #that created a blast hit and where they hit to the genome. All gaps are indicated
 #as Ns
 #
@@ -30,6 +29,9 @@ def main():
 	#Contig file 4 - HB2
 	contigs_4 = sys.argv[5]
 	
+	#Length of Reference
+	ref_len = sys.argv[6]
+	
 	Cgenome_str = ''
 	Bgenome_str = ''
 	Fgenome_str = ''
@@ -37,7 +39,7 @@ def main():
 	x = 1
 	
 	#Create 4 strings of all Ns
-	while (x <= 7750108): #Tery genome is length 7750108
+	while (x <= ref_len): 
 		Cgenome_str += 'N'
 		Bgenome_str += 'N'
 		Fgenome_str += 'N'
