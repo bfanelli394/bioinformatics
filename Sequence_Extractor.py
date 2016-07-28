@@ -5,7 +5,7 @@
 #Numbers are taken from the csv file under the assumption that column 1 is the sequence name,
 #2 is the length, 8 and 9 are the start and end locations of the subject sequence, 5 is the
 #query (contig) name, and columns 6 and 7 have the sequence start and end (to be extracted).
-#This can (and likely will) be edited based on the job at hand and the layout of the csv file.
+#This can be edited based on the job at hand and the layout of the csv file.
 import re
 import string
 import sys
